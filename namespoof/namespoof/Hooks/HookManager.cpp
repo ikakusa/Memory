@@ -1,7 +1,7 @@
 #include "HookManager.h"
 void HookManager::initHooks() {
 	auto start = std::chrono::steady_clock::now();
-	hooks.push_back(new ConnectionRequest::create);
+	add<ConnectionRequest::create>();
 
 	for (auto hook : hooks) {
 		hook->Initialize();
@@ -9,5 +9,5 @@ void HookManager::initHooks() {
 	}
 	auto end = std::chrono::steady_clock::now();
 	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-	writelog("%ld", duration.count());
+	writelog("%ldms", duration.count());
 }

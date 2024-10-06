@@ -22,8 +22,5 @@ __forceinline void writelog(const char* fmt, ...) {
         outputFile << buffer << std::endl;
         outputFile.close();
     }
-    else {
-    }
-
     free(value);
 }
