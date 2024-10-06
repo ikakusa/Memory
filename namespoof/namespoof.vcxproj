@@ -176,7 +176,7 @@
     <ClInclude Include="Libraries\Libs\MinHook\hde\table64.h" />
     <ClInclude Include="Libraries\Libs\MinHook\MinHook.h" />
     <ClInclude Include="Libraries\Libs\MinHook\trampoline.h" />
-    <ClInclude Include="Libraries\Libs\sigscanner.h" />
+    <ClInclude Include="Libraries\Libs\scanner.h" />
     <ClInclude Include="Libraries\Libs\xorstr.hpp" />
     <ClInclude Include="Logger\Logger.h" />
     <ClInclude Include="pch.h" />

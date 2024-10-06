@@ -117,7 +117,7 @@
     <ClInclude Include="dllmain.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Libraries\Libs\sigscanner.h">
+    <ClInclude Include="Libraries\Libs\scanner.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Logger\Logger.h">
