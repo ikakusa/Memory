@@ -4,7 +4,7 @@
 #include <Psapi.h>
 #include <libhat.hpp>
 #include <string>
-#include <sigscanner.h>
+#include <scanner.h>
 #include "../Logger/Logger.h"
 #include "xorstr.hpp"
 class FuncHook;
