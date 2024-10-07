@@ -32,12 +32,7 @@ github : https://github.com/ikakusa/Memory ‰¼
 
 namespace scanner {
 
-	class sig {
-	public:
-		byte _byte;
-		bool iswild;
-		sig(byte _byte, bool iswild) : _byte(_byte), iswild(iswild){};
-	};
+	class sig;
 
 	#define INRANGE(x,a,b)		(x >= a && x <= b) 
 	#define getBits( x )		(INRANGE(x,'0','9') ? (x - '0') : ((x&(~0x20)) - 'A' + 0xa))
@@ -48,14 +43,21 @@ namespace scanner {
 	typedef std::vector<sig> signature;
 	typedef std::string_view view;
 
+	class sig {
+	public:
+		byte _byte;
+		bool iswild;
+		sig(byte _byte, bool iswild) : _byte(_byte), iswild(iswild){};
+	};
+
 	class process {
 	private:
 		static inline view current;
 	public:
 		static inline void set(const view&);
 
-		static inline length base();
-		static inline length size();
+		[[nodiscard]] static inline length base();
+		[[nodiscard]] static inline length size();
 	};
 
 	enum class find_type {
@@ -66,10 +68,10 @@ namespace scanner {
 	class access {
 	public:
 		template <typename ret, typename type>
-		static inline ret& at(type* _type, size_t _offset);
+		[[nodiscard]] static inline ret& at(type* _type, size_t _offset);
 
-		static inline signature parse_pattern(const view& pattern);
-		static inline uintptr_t find_pattern(const length start, const length end, const signature pattern, find_type type = find_type::x4);
+		[[nodiscard]] static inline signature parse_pattern(const view& pattern);
+		[[nodiscard]] static inline uintptr_t find_pattern(const length start, const length end, const signature pattern, find_type type = find_type::x4);
 	};
 
 

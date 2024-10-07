@@ -11,16 +11,10 @@ class FuncHook;
 class MemoryUtils {
 private:
 	static uintptr_t getBase() {
-		static uintptr_t mc = reinterpret_cast<uintptr_t>(GetModuleHandleA("Minecraft.Windows.exe"));
-		return mc;
+		return (uintptr_t)scanner::process::base();
 	}
 	static unsigned long GetMinecraftSize() {
-		HMODULE base = GetModuleHandleA("Minecraft.Windows.exe");
-		if (!base) return 0;
-
-		MODULEINFO moduleInfo;
-		if (!GetModuleInformation(GetCurrentProcess(), base, &moduleInfo, sizeof(MODULEINFO))) return 0;
-		return moduleInfo.SizeOfImage;
+		return (unsigned long)scanner::process::size();
 	}
 
 	static uintptr_t SlideAddress(uintptr_t offset) { return getBase() + offset; }

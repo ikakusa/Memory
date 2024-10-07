@@ -11,7 +11,7 @@ private:
 	template <typename T>
 		static void add() {
 		static_assert(std::is_base_of<Hook, T>::value, "It isn't Hook!");
-		hookList.push_back(new T);
+		hooks.push_back(new T);
 	};
 public:
 	static void initHooks();
