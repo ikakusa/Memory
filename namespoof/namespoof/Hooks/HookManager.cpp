@@ -9,5 +9,5 @@ void HookManager::initHooks() {
 	}
 	auto end = std::chrono::steady_clock::now();
 	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-	writelog("%ldms", duration.count());
+	writelog("HookManager<init> : %ldms", duration.count());
 }
