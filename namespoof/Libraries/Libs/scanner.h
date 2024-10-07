@@ -39,7 +39,7 @@ namespace scanner {
 	#define getByte( x )		(getBits(x[0]) << 4 | getBits(x[1]))
 
 	typedef unsigned char byte;
-	typedef unsigned __int64 length;
+	typedef std::uint64_t length;
 	typedef std::vector<sig> signature;
 	typedef std::string_view view;
 
@@ -76,22 +76,25 @@ namespace scanner {
 
 
 	/* scanner::process */
+
 	void process::set(const view& in) {
 		current = in;
 	}
 	length scanner::process::base() {
 		return reinterpret_cast<length>(GetModuleHandleA(current.data()));
 	}
-	length scanner::process::size() {
+	length scanner::process::size() { 
 		static HMODULE data = (HMODULE)base();
 		if (!data) return 0;
 
 		MODULEINFO mi;
 		return GetModuleInformation(GetCurrentProcess(), data, &mi, sizeof(mi)) ? mi.SizeOfImage : 0;
 	}
+	/* scanner::process */
 
 
 	/* scanner::access */
+
 	template <typename ret, typename type>
 	ret& access::at(type* _type, size_t _offset) {
 		return *reinterpret_cast<ret*>(reinterpret_cast<size_t>(_type) + _offset);
@@ -114,7 +117,7 @@ namespace scanner {
 
 		const auto size = pattern.size();
 		const auto& front = pattern.front(), & back = pattern.back();
-		const auto start_byte = (byte*)start, end_byte = (byte*)end - size;
+		const auto start_byte = (byte*)start, end_byte = (byte*)end - (size - 1);
 
 		const auto match_side = [&front, &back, &size](byte* data) {
 			if (front.iswild && back.iswild) return true;
@@ -136,5 +139,6 @@ namespace scanner {
 
 		return 0;
 	}
+	/* scanner::access */
 
 }
